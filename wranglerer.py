@@ -101,6 +101,21 @@ def summarize(df):
 
     
 
+    
+    
+def get_hist_better(df):
+    ''' Gets histographs of acquired continuous variables'''
+
+    # List of columns
+    cols = [col for col in df.columns if df[col].dtype != 'O']
+
+    for col in cols:
+        plt.figure(figsize=(4, 2))
+        plt.hist(df[col], bins=50, edgecolor='black')
+        plt.title(f'Distribution of {col}:')
+        plt.show()
+        
+        
 def get_hist(df):
     ''' Gets histographs of acquired continuous variables'''
     
@@ -149,6 +164,18 @@ def get_upper_outliers(s, k=1.5):
     upper_bound = q3 + k * iqr
     return s.apply(lambda x: max([x - upper_bound, 0]))
 
+def get_lower_outliers(s, k=1.5):
+    '''
+    Given a series (ie df.col_name) and a cutoff value, k, returns the lower outliers for the
+    series.
+
+    The values returned will be either 0 (if the point is not an outlier), or a
+    number that indicates how far away from the lower bound the observation is.
+    '''
+    q1, q3 = s.quantile([.25, 0.75])
+    iqr = q3 - q1
+    lower_bound = q1 - k * iqr
+    return s.apply(lambda x: max([lower_bound - x, 0]))
 
 def add_upper_outlier_columns(df, k=1.5):
     '''
@@ -228,11 +255,18 @@ def create_dummies(df, object_cols):
 def split_data(df):
     train_val,test = train_test_split(df,
                                      random_state=2013,
-                                     train_size=0.7)
+                                     train_size=0.82)
     train, validate = train_test_split(train_val,
                                       random_state=2013,
-                                      train_size=0.8)
+                                      train_size=0.73)
     return train, validate, test
+
+
+def get_catplot(df,target):
+    # List of columns
+    cols = [col for col in df.columns if df[col].dtype == 'float64']
+    for col in cols:
+        sns.catplot(data=df, x=target, y=df[col])
 
 
 def train_validate_test(df, target):
