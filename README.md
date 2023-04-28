@@ -32,19 +32,19 @@
 
 |Feature |  Data type | Definition |
 |---|---|---|
-| fg_pct: | float | percentage of shots taken which scored | skill |
-| opp_fg_pct: | float | same as above but for the *opponent* | hustle |
-| three_pt_pct: | float | percentage of 3-point shots taken which scored | skill |
-| opp_three_pt_pct: | float | same as above but for the *opponent* | preparation |
-| ft_pct: | float | percentage of free throws taken which scored | skill |
-| rebounds: | float | number of missed shots recovered from rim/backboard | hustle |
-| opp_rebounds: | float | same as above but for the *opponent* | hustle |
-| assists: | float | number of passes completed to player in the act of scoring a field goal | skill |
-| steals: | float | number of times the ball was successfully stripped from opposing player | hustle |
-| opp_steals: | float | same as above but for the *opponent* | skill |
-| trnovers_committed: | float | number of times the ball was turned-over to the opponent | skill |
-| pts: | float | number of points scored | preparation |
-| opp_pts: | float | same as above but for the *opponent* | preparation |
-| opp_fouls: | float | number of times the opponent fouled a player | hustle |
-| prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season | prep |
-| playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team | prep |
+| fg_pct: | float | percentage of shots taken which scored |
+| opp_fg_pct: | float | same as above but for the *opponent* |
+| three_pt_pct: | float | percentage of 3-point shots taken which scored |
+| opp_three_pt_pct: | float | same as above but for the *opponent* |
+| ft_pct: | float | percentage of free throws taken which scored |
+| rebounds: | float | number of missed shots recovered from rim/backboard |
+| opp_rebounds: | float | same as above but for the *opponent* |
+| assists: | float | number of passes completed to player in the act of scoring a field goal |
+| steals: | float | number of times the ball was successfully stripped from opposing player |
+| opp_steals: | float | same as above but for the *opponent* |
+| trnovers_committed: | float | number of times the ball was turned-over to the opponent |
+| pts: | float | number of points scored |
+| opp_pts: | float | same as above but for the *opponent* |
+| opp_fouls: | float | number of times the opponent fouled a player |
+| prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season |
+| playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team |
