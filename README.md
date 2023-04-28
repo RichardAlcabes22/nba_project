@@ -46,5 +46,5 @@
 | pts: | float | number of points scored | preparation |
 | opp_pts: | float | same as above but for the *opponent* | preparation |
 | opp_fouls: | float | number of times the opponent fouled a player | hustle |
-| prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season | |
-| playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team | |
+| prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season | prep |
+| playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team | prep |
