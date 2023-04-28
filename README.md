@@ -31,7 +31,7 @@
 #### Data Dictionary: 
 
 |Feature |  Data type | Definition |
-|---|All Stats are sampled "Per 100 Possesions"|---|
+|---|---|---|
 
 | fg_pct: | float | percentage of shots taken which scored | skill |
 | opp_fg_pct: | float | same as above but for the *opponent* | hustle |
