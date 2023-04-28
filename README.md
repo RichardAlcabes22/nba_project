@@ -32,7 +32,6 @@
 
 |Feature |  Data type | Definition |
 |---|---|---|
-
 | fg_pct: | float | percentage of shots taken which scored | skill |
 | opp_fg_pct: | float | same as above but for the *opponent* | hustle |
 | three_pt_pct: | float | percentage of 3-point shots taken which scored | skill |
