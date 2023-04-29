@@ -79,29 +79,37 @@ models = {
     'LassoLars Regression':LassoLars(alpha=0.1)
     }
 
+def split_data(df):
+    train_val,test = train_test_split(df,
+                                     random_state=2013,
+                                     train_size=0.82)
+    train, validate = train_test_split(train_val,
+                                      random_state=2013,
+                                      train_size=0.73)
+    return train, validate, test
 
-def full_split_wines(train, validate, test, target):
-    '''
-    accepts train, validate, test data sets and the name of the target variable as a parameter
-    splits the data frame into:
-    X_train, X_validate, X_test, y_train, y_validate, y_test
-    '''
-    #train, validate, test = train_validate_test_split(df, target)
+# def full_split_wines(train, validate, test, target):
+#     '''
+#     accepts train, validate, test data sets and the name of the target variable as a parameter
+#     splits the data frame into:
+#     X_train, X_validate, X_test, y_train, y_validate, y_test
+#     '''
+#     train, validate, test = split_data(df)
 
-    #save target column
-    y_train = train[target]
-    y_validate = validate[target]
-    y_test = test[target]
+#     #save target column
+#     y_train = train[target]
+#     y_validate = validate[target]
+#     y_test = test[target]
 
-    #remove target column from the sets
-    train.drop(columns = target, inplace=True)
-    validate.drop(columns = target, inplace=True)
-    test.drop(columns = target, inplace=True)
+#     #remove target column from the sets
+#     train.drop(columns = target, inplace=True)
+#     validate.drop(columns = target, inplace=True)
+#     test.drop(columns = target, inplace=True)
 
-    return train, validate, test, y_train, y_validate, y_test
+#     return train, validate, test, y_train, y_validate, y_test
 
 
-X_train, X_validate, X_test, y_train, y_validate, y_test = full_split_wines(train, validate, test, target)
+# X_train, X_validate, X_test, y_train, y_validate, y_test = full_split_wines(train, validate, test, target)
 
 
 def standard_scale_wines(train, validate, test):
@@ -125,33 +133,33 @@ def standard_scale_wines(train, validate, test):
     
     return train, validate, test
 
-def run_model_standard():
-    # runs regression models on the X_train scaled with StandardScaler()
-    X1, X2, _ = standard_scale_wines(X_train, X_validate, X_test)
-    run_model(X1, X2, 'standard')
+# def run_model_standard():
+#     # runs regression models on the X_train scaled with StandardScaler()
+#     X1, X2, _ = standard_scale_wines(X_train, X_validate, X_test)
+#     run_model(X1, X2, 'standard')
 
 
-X1, X2, X3 = standard_scale_wines(X_train, X_validate, X_test)
+# X1, X2, X3 = standard_scale_wines(X_train, X_validate, X_test)
 
 
-f1 = ['volatile acidity', 'chlorides', 'density']
-f2 = ['volatile acidity', 'chlorides']
-f3 = ['volatile acidity', 'chlorides', 'density', 'alcohol']
-f4 = ['volatile acidity', 'chlorides', 'density', 'alcohol', 'residual sugar']
-f5 = ['volatile acidity', 'chlorides', 'density', 'residual sugar', 'density', 'fixed acidity']
-f6 = select_kbest(X_train, y_train, 4)
-f7 = X_train.columns.tolist()
+# f1 = ['volatile acidity', 'chlorides', 'density']
+# f2 = ['volatile acidity', 'chlorides']
+# f3 = ['volatile acidity', 'chlorides', 'density', 'alcohol']
+# f4 = ['volatile acidity', 'chlorides', 'density', 'alcohol', 'residual sugar']
+# f5 = ['volatile acidity', 'chlorides', 'density', 'residual sugar', 'density', 'fixed acidity']
+# f6 = select_kbest(X_train, y_train, 4)
+# f7 = X_train.columns.tolist()
 
-# create a dictionary with features
-features = {
-    'f1':f1,
-    'f2':f2,
-    'f3':f3,
-    'f4':f4,
-    'f5':f5,
-    'f6':f6,
-    'f7':f7
-}
+# # create a dictionary with features
+# features = {
+#     'f1':f1,
+#     'f2':f2,
+#     'f3':f3,
+#     'f4':f4,
+#     'f5':f5,
+#     'f6':f6,
+#     'f7':f7
+# }
 
 
 

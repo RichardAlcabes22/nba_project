@@ -7,6 +7,18 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
+
+def wrangle_nba():
+    ''' 
+     Acquire nba data from a .csv file and drop Team Name column
+     ''' 
+    df = pd.read_csv('nba.csv')
+    df = df.drop(columns='team')
+    return df
+    
+    
+    
+    
 def acquire_red_df():
     ''' 
      Acquire data from X schema using env imports, rename columns, and storing a cached version of SQL pull as a .csv.
@@ -103,7 +115,7 @@ def summarize(df):
 
     
     
-def get_hist_better(df):
+def get_hist(df):
     ''' Gets histographs of acquired continuous variables'''
 
     # List of columns
@@ -116,7 +128,7 @@ def get_hist_better(df):
         plt.show()
         
         
-def get_hist(df):
+def get_hist_ugh(df):
     ''' Gets histographs of acquired continuous variables'''
     
     plt.figure(figsize=(16, 3))
