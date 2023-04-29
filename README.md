@@ -48,3 +48,24 @@
 | opp_fouls: | float | number of times the opponent fouled a player |
 | prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season |
 | playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team |
+
+#### Instructions for those who wish to reproduce this work or simply follow along:
+You Will Need (ALL files must be placed in THE SAME FOLDER!):
+- 1. final_nba_project.ipynb file from this git repo
+- 2. wranglerer.py file from this git repo
+- 3. modeling.py file from this git repo
+- 4. nba.csv from this git repo
+
+Ensure:
+- All files are in the SAME FOLDER
+- wranglerer.py and modeling.py each have the .py extension in the file name
+
+Any further assistance required, please email me at myemail@somecompany.com.
+
+#### Findings, Recommendations, and Takeaways:
+
+- Modeling results may improve by subsetting the dataset on wine_color.
+- Outliers do need to be dealt with.  Rather than setting a blanket rule for all features, a column-by-column appraoch to defining and removing outliers may prove beneficial for modeling.
+- Getting more non-technical data may prove beneficial.  How certain can we be that each Quality Score is a function of an objective process?  Does the possibility for subjective factors exist at such a magnitude that it may create noisy data?
+- Potential dimensionality reduction (PCA/ t-SNE) may assist with cluster identification.
+- Continue to tune model hyperparameters

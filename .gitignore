@@ -4,7 +4,7 @@ play.ipynb
 .ipynb_checkpoints/
 __pycache__
 catboost_info
-*.csv
+
 *.xlsx
 *.xls
 *.xl
