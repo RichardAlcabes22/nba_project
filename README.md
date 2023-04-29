@@ -64,8 +64,12 @@ Any further assistance required, please email me at myemail@somecompany.com.
 
 #### Findings, Recommendations, and Takeaways:
 
-- 
-- 
-- 
-- 
-- 
+- Modeling was optimized for PRECISION for the Positive Class ("Playoffs").  The nature of sports wagering allows False Negatives to be inconsequential, however, False Positives are punished significantly via loss of wagering capital.
+- Tree-Based models performed admirably well, as did Multi-Layed Perceptron models.  A realistic expectation for Precision on the Validation subset ranges between 80% and 88%.  Multiple Logistic Regression models provided coefficient information for determining feature importance.
+- This implies that not only is it possible to achieve significant "predictive capability", but we may also retain a realistic level of "interpretability" or explainability with our results.  This is great news!
+- Along with DecisionTree and Random Forest models, LogRegression pointed towards the features "pts" and "opp_pts" as the Top 2 features.  While this should seem intuitive and obvious, the interesting aspect of feature importance is that all three models pointed to differing features in order to round out their respective Top 5 lists.
+
+#### Applications:
+
+- For the purposes of placing "Futures" wagers for NBA Champ, Conf Champ, etc...the first step is to ensure that Team X will qualify for the playoffs.  If a wager is placed, and Team X fails to reach the playoffs, then the ticket is now an expensive piece of kindling.  This project deals ONLY WITH THIS ASPECT of the process, will Team X qualify for the playoffs?
+- Further evaluation is necessary to compare the probability that Team X wins the NBA Championship with the payoff odds offered by the sportsbook.  Much information is publicly available to make this evaluation such that a wager is made with a Positive Expected Value.  It is outside the scope of this project document to elaborate further on this topic.
