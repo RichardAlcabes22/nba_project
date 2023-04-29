@@ -64,8 +64,8 @@ Any further assistance required, please email me at myemail@somecompany.com.
 
 #### Findings, Recommendations, and Takeaways:
 
-- Modeling results may improve by subsetting the dataset on wine_color.
-- Outliers do need to be dealt with.  Rather than setting a blanket rule for all features, a column-by-column appraoch to defining and removing outliers may prove beneficial for modeling.
-- Getting more non-technical data may prove beneficial.  How certain can we be that each Quality Score is a function of an objective process?  Does the possibility for subjective factors exist at such a magnitude that it may create noisy data?
-- Potential dimensionality reduction (PCA/ t-SNE) may assist with cluster identification.
-- Continue to tune model hyperparameters
+- 
+- 
+- 
+- 
+- 
