@@ -17,7 +17,7 @@
 - Acquire: Curated dataset from from https://www.basketball-reference.com/ by subsetting team-level statistics which include stats reflecting "skill, talent, and hustle".  For example, team Field Goal % is a function of skill level(among other contributors), while Steals, Rebounds, or Fouls Drawn are a function of "talent and hustle" (among others).
 - Prepare: Kept outliers after investigating their nature, missingness was a non-issue, as there were ZERO entries containing NULL values for predictors.  StandardScaler used for scaling purposes.  Split into ML subsets (Train/Validate/Test).
 - Explore: Univariate and multi-variate analysis, correlation matrix, 2D visualization, correlation significance testing, 2-sample T-testing for significant differences in means.
-- Model: Established a baseline "Precision" for Positive class of 56.5% using the most frequent target occurance of "yes: playoffs".  Then with a Vanilla, Obviously Overfit, DecisionTreeClassifier with default hyperparameters, established a new Precision floor of 82.0%. After trying different tree-based and non-tree-based algorithms with differing tunings, findings indicated a DecisionTree Classifier with a max_depth setting of 4 yielded best results (88.0% Precision on Test).
+- Model: Established a baseline "Precision" for Positive class of 56.5% using the most frequent target occurance of "yes: playoffs".  Then with a DecisionTreeClassifier with MaxDepth set to 4, established a new Precision floor of 86.0%. After creating models with different tree-based and non-tree-based algorithms and multiple tunings, findings indicated a Multi-Layer Perceptron with a three hidden layers (256,128,64 nodes) yielded best validation results (90.0% Precision on Test).
 - Deliver: Please refer to this doc as well as the Final_NBA.ipynb file for the finished version of the presentation, in addition to each of the underlying exploratory notebooks.
 
 #### Initial hypotheses and questions:
@@ -33,18 +33,18 @@
 |Feature |  Data type | Definition |
 |---|---|---|
 | fg_pct: | float | percentage of shots taken which scored |
-| opp_fg_pct: | float | same as above but for the *opponent* |
+| opp_fg_pct: | float | same as above, but for the *opponent* |
 | three_pt_pct: | float | percentage of 3-point shots taken which scored |
-| opp_three_pt_pct: | float | same as above but for the *opponent* |
+| opp_three_pt_pct: | float | same as above, but for the *opponent* |
 | ft_pct: | float | percentage of free throws taken which scored |
 | rebounds: | float | number of missed shots recovered from rim/backboard |
-| opp_rebounds: | float | same as above but for the *opponent* |
+| opp_rebounds: | float | same as above, but for the *opponent* |
 | assists: | float | number of passes completed to player in the act of scoring a field goal |
 | steals: | float | number of times the ball was successfully stripped from opposing player |
-| opp_steals: | float | same as above but for the *opponent* |
+| opp_steals: | float | same as above, but for the *opponent* |
 | trnovers_committed: | float | number of times the ball was turned-over to the opponent |
 | pts: | float | number of points scored |
-| opp_pts: | float | same as above but for the *opponent* |
+| opp_pts: | float | same as above, but for the *opponent* |
 | opp_fouls: | float | number of times the opponent fouled a player |
 | prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season |
 | playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team |
@@ -65,9 +65,10 @@ Any further assistance required, please email me at myemail@somecompany.com.
 #### Findings, Recommendations, and Takeaways:
 
 - Modeling was optimized for PRECISION for the Positive Class ("Playoffs").  The nature of sports wagering allows False Negatives to be inconsequential, however, False Positives are punished significantly via loss of wagering capital.
-- Tree-Based models performed admirably well, as did Multi-Layed Perceptron models.  A realistic expectation for Precision on the Validation subset ranges between 80% and 88%.  Multiple Logistic Regression models provided coefficient information for determining feature importance.
-- This implies that not only is it possible to achieve significant "predictive capability", but we may also retain a realistic level of "interpretability" or explainability with our results.  This is great news!
+- Tree-Based models performed admirably well, as did Multi-Layed Perceptron and LogisticRegression classifiers.  A realistic expectation for Precision on the Validation subset ranges between 80% and 88%.  Multiple Logistic Regression models also provided coefficient information for determining feature importance.
+- This implies that not only is it possible to achieve significant "predictive capability", but we may also retain a realistic level of "interpretability" or explainability with our results if we were to use Tree-Based classifiers.
 - Along with DecisionTree and Random Forest models, LogRegression pointed towards the features "pts" and "opp_pts" as the Top 2 features.  While this should seem intuitive and obvious, the interesting aspect of feature importance is that all three models pointed to differing features in order to round out their respective Top 5 lists.
+- Explore applications of ML clustering on this dataset in support of increasing the predictive power of classification models.
 
 #### Applications:
 

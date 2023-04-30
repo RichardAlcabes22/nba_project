@@ -27,6 +27,20 @@ target = 'quality'
 
 ####################    ACQUIRE
 
+
+def get_baseline(df):
+    df['baseline'] = 1
+    baseline_accuracy = (df.baseline == df.playoffs).mean()
+    subset = df[df.playoffs == 1]
+    baseline_recall = (subset.baseline == subset.playoffs).mean()
+    subset = df[df.baseline == 1]
+    baseline_precision = (subset.baseline == subset.playoffs).mean()
+    df.drop(columns='baseline',inplace=True)
+    print(f'baseline accuracy: {baseline_accuracy:.2%}')
+    print(f'baseline recall: {baseline_recall:.2%}')
+    print(f'baseline precision: {baseline_precision:.2%}')  
+    
+    
 def run_model(X_train, X_validate, scaling):
     
     '''

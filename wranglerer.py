@@ -293,10 +293,12 @@ def train_validate_test(df, target):
     X_train (df) & y_train (series), X_validate & y_validate, X_test & y_test. 
     '''
     # split df into test (20%) and train_validate (80%)
-    train_validate, test = train_test_split(df, test_size=.2, random_state=123)
+    #train_validate, test = train_test_split(df, test_size=.2, random_state=123)
 
     # split train_validate off into train (70% of 80% = 56%) and validate (30% of 80% = 24%)
-    train, validate = train_test_split(train_validate, test_size=.3, random_state=123)
+    #train, validate = train_test_split(train_validate, test_size=.3, random_state=123)
+    
+    train, validate, test = split_data(df)
 
         
     # split train into X (dataframe, drop target) & y (series, keep target only)
