@@ -27,15 +27,24 @@ target = 'quality'
 
 ####################    ACQUIRE
 
+def split_data(df):
+    train_val,test = train_test_split(df,
+                                     random_state=2013,
+                                     train_size=0.82)
+    train, validate = train_test_split(train_val,
+                                      random_state=2013,
+                                      train_size=0.73)
+    return train, validate, test
 
 def get_baseline(df):
-    df['baseline'] = 1
-    baseline_accuracy = (df.baseline == df.playoffs).mean()
-    subset = df[df.playoffs == 1]
+    train, validate, test = split_data(df)
+    train['baseline'] = 1
+    baseline_accuracy = (train.baseline == train.playoffs).mean()
+    subset = train[train.playoffs == 1]
     baseline_recall = (subset.baseline == subset.playoffs).mean()
-    subset = df[df.baseline == 1]
+    subset = train[train.baseline == 1]
     baseline_precision = (subset.baseline == subset.playoffs).mean()
-    df.drop(columns='baseline',inplace=True)
+    train.drop(columns='baseline',inplace=True)
     print(f'baseline accuracy: {baseline_accuracy:.2%}')
     print(f'baseline recall: {baseline_recall:.2%}')
     print(f'baseline precision: {baseline_precision:.2%}')  
