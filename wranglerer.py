@@ -15,65 +15,7 @@ def wrangle_nba():
     df = pd.read_csv('nba.csv')
     df = df.drop(columns='team')
     return df
-    
-    
-    
-    
-def acquire_red_df():
-    ''' 
-     Acquire data from X schema using env imports, rename columns, and storing a cached version of SQL pull as a .csv.
-     Specifically, the SQL query returns a df in accordance with SQL script.
-     ''' 
-    if os.path.exists('winequality-red.csv'):
-        print('local version found!')
-        return pd.read_csv('winequality-red.csv')
-    else:
-        df = pd.read_csv('https://query.data.world/s/vca4kc5kqacfufuod2am7poidp5e4a?dws=00000')
-        df.to_csv('winequality-red.csv',index=True)
-        return df
-
-def acquire_white_df():
-    ''' 
-     Acquire data from X schema using env imports, rename columns, and storing a cached version of SQL pull as a .csv.
-     Specifically, the SQL query returns a df in accordance with SQL script.
-     ''' 
-    if os.path.exists('winequality-white.csv'):
-        print('local version found!')
-        return pd.read_csv('winequality-white.csv')
-    else:
-        df = pd.read_csv('https://query.data.world/s/42ad3ygx65hdnkyo7s4hhpillvmmxm?dws=00000')
-        df.to_csv('winequality-white.csv',index=True)
-        return df
-
-def merge_wines_df():
-    '''
-    Takes in two dfs (red/white) and outputs a single merged df for both
-    
-    '''
-    red,white = acquire_red_df(),acquire_white_df()
-    red['wine_color'] = 1
-    white['wine_color'] = 0
-    df = pd.concat([red,white],axis=0,ignore_index=True)
-    df.columns = [col.lower().replace(' ','_') for col in df.columns]
-    return df
-
-
-def concat_df():
-    '''
-    Takes in the vanilla red and white wine dataframes and returns a cleaned version that is ready
-    for exploration and further analysis
-    INPUT:
-    NONE
-    OUTPUT:
-    wines = pandas dataframe with both red and white wine prepped for exploration
-    '''
-    red, white = acquire_red_df(),acquire_white_df()
-    white['is_red'] = 0
-    red['is_red'] = 1
-    wines = pd.concat([red, white], ignore_index = True)
-    return wines
-    
-    
+        
 def summarize(df):
     '''
     summarize will take in a single argument (a pandas dataframe) 
@@ -127,41 +69,7 @@ def get_hist(df):
         plt.title(f'Distribution of {col}:')
         plt.show()
         
-        
-def get_hist_ugh(df):
-    ''' Gets histographs of acquired continuous variables'''
-    
-    plt.figure(figsize=(16, 3))
-
-    # List of columns
-    cols = [col for col in df.columns if df[col].dtype != 'O']
-
-    for i, col in enumerate(cols):
-
-        # i starts at 0, but plot nos should start at 1
-        plot_number = i + 1 
-
-        # Create subplot.
-        plt.subplot(1, len(cols), plot_number)
-
-        # Title with column name.
-        plt.title(col)
-
-        # Display histogram for column.
-        df[col].hist(bins=50)
-
-        # Hide gridlines.
-        plt.grid(False)
-
-        # turn off scientific notation
-        plt.ticklabel_format(useOffset=False)
-
-        plt.tight_layout()
-
-    plt.show()
-     
-    
-
+       
     
 def get_upper_outliers(s, k=1.5):
     '''
@@ -197,71 +105,7 @@ def add_upper_outlier_columns(df, k=1.5):
     for col in df.select_dtypes('number'):
         df[col + '_outliers_upper'] = get_upper_outliers(df[col], k)
     return df
-
-
-
-    
-def wrangle_student_math(path):
-    df = pd.read_csv(path, sep=";")
-    
-    # drop any nulls
-    df = df[~df.isnull()]
-
-    # get object column names
-    object_cols = get_object_cols(df)
-    
-    # create dummy vars
-    df = create_dummies(df, object_cols)
-      
-    # split data 
-    X_train, y_train, X_validate, y_validate, X_test, y_test = train_validate_test(df, 'G3')
-    
-    # get numeric column names
-    numeric_cols = get_numeric_X_cols(X_train, object_cols)
-
-    # scale data 
-    X_train_scaled, X_validate_scaled, X_test_scaled = min_max_scale(X_train, X_validate, X_test, numeric_cols)
-    
-    return df, X_train, X_train_scaled, y_train, X_validate_scaled, y_validate, X_test_scaled, y_test
-
-
-
-def get_object_cols(df):
-    '''
-    This function takes in a dataframe and identifies the columns that are object types
-    and returns a list of those column names. 
-    '''
-    # create a mask of columns whether they are object type or not
-    mask = np.array(df.dtypes == "object")
-
-        
-    # get a list of the column names that are objects (from the mask)
-    object_cols = df.iloc[:, mask].columns.tolist()
-    
-    return object_cols
- 
-    
-    
-def create_dummies(df, object_cols):
-    '''
-    This function takes in a dataframe and list of object column names,
-    and creates dummy variables of each of those columns. 
-    It then appends the dummy variables to the original dataframe. 
-    It returns the original df with the appended dummy variables. 
-    '''
-    
-    # run pd.get_dummies() to create dummy vars for the object columns. 
-    # we will drop the column representing the first unique value of each variable
-    # we will opt to not create na columns for each variable with missing values 
-    # (all missing values have been removed.)
-    dummy_df = pd.get_dummies(object_cols, dummy_na=False, drop_first=True)
-    
-    # concatenate the dataframe with dummies to our original dataframe
-    # via column (axis=1)
-    df = pd.concat([df, dummy_df], axis=1)
-
-    return df
-
+       
 
 
 def split_data(df):
@@ -316,19 +160,6 @@ def train_validate_test(df, target):
     return X_train, y_train, X_validate, y_validate, X_test, y_test
 
 
-
-def get_numeric_X_cols(X_train, object_cols):
-    '''
-    takes in a dataframe and list of object column names
-    and returns a list of all other columns names, the non-objects. 
-    '''
-    numeric_cols = [col for col in X_train.columns.values if col not in object_cols]
-    
-    return numeric_cols
-
-
-
-
 def nulls_by_col(df):
     '''
     This function takes in a dataframe 
@@ -353,15 +184,6 @@ def nulls_by_row(df):
                         left_index=True,
                         right_index=True)[['num_cols_missing', 'percent_cols_missing']]
     return rows_missing.sort_values(by='num_cols_missing', ascending=False)
-
-def remove_columns(df, cols_to_remove):
-    '''
-    This function takes in a dataframe 
-    and the columns that need to be dropped
-    then returns the desired dataframe.
-    '''
-    df = df.drop(columns=cols_to_remove)
-    return df
 
 
 def handle_missing_values(df, prop_required_columns=0.5, prop_required_rows=0.75):

@@ -49,18 +49,6 @@
 | prev-season: | int | 1-made Playoffs in Previous Season / 0-did not make Playoffs in Previous Season |
 | playoffs: | int | TARGET: 1-Playoff Team / 0-Non-Playoff Team |
 
-#### Instructions for those who wish to reproduce this work or simply follow along:
-You Will Need (ALL files must be placed in THE SAME FOLDER!):
-- 1. final_nba_project.ipynb file from this git repo
-- 2. wranglerer.py file from this git repo
-- 3. modeling.py file from this git repo
-- 4. nba.csv from this git repo
-
-Ensure:
-- All files are in the SAME FOLDER
-- wranglerer.py and modeling.py each have the .py extension in the file name
-
-Any further assistance required, please email me at myemail@somecompany.com.
 
 #### Findings, Recommendations, and Takeaways:
 
@@ -74,3 +62,17 @@ Any further assistance required, please email me at myemail@somecompany.com.
 
 - For the purposes of placing "Futures" wagers for NBA Champ, Conf Champ, etc...the first step is to ensure that Team X will qualify for the playoffs.  If a wager is placed, and Team X fails to reach the playoffs, then the ticket is now an expensive piece of kindling.  This project deals ONLY WITH THIS ASPECT of the process, will Team X qualify for the playoffs?
 - Further evaluation is necessary to compare the probability that Team X wins the NBA Championship to the payoff odds offered by the sportsbook.  Much information is publicly available to make this evaluation such that a wager can be made with a Positive Expected Value.  It is outside the scope of this project to elaborate further on the topic of sports wagering theory and practice.  As a starting point, visit the "Wizard of Odds", Michael Shackleford's website at https://wizardofodds.com/games/sports-betting.
+
+
+#### Instructions for those who wish to reproduce this work or simply follow along:
+You Will Need (ALL files must be placed in THE SAME FOLDER!):
+- 1. final_nba_project.ipynb file from this git repo
+- 2. wranglerer.py file from this git repo
+- 3. modeling.py file from this git repo
+- 4. nba.csv from this git repo
+
+Ensure:
+- All files are in the SAME FOLDER
+- wranglerer.py and modeling.py each have the .py extension in the file name
+
+Any further assistance required, please email me at myemail@somecompany.com.
