@@ -72,6 +72,7 @@ You Will Need (ALL files must be placed in THE SAME FOLDER!):
 - 4. nba.csv from this git repo
 
 Ensure:
+- CATboost library required in the working environment, however, the code in the Final_Notebook can be removed or commented out in order to run the notebook.
 - All files are in the SAME FOLDER
 - wranglerer.py and modeling.py each have the .py extension in the file name
 
