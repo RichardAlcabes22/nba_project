@@ -8,13 +8,13 @@
 #### PROJECT DESCRIPTION and ASSUMPTIONS:
 - Basketball has changed significantly over the past several generations, with respect to tactics, strategy, and tempo.  Thus, the team statistics generated per game have changed over time to reflect this assertion. 
 
-- Consequently, this dataset does not display team stats on a "per game" basis.  Instead, team stats are displayed "per 100 possessions".  This allows for a somewhat-more-valid comparison to be made between teams of differing generations.  This also partially controls for stats being functionally-dependent upon common in-game conditions and provides a window into a more distilled view of a team's capabilities.
+- Consequently, this dataset does not display team stats on a "per game" basis.  Instead, team stats are displayed "per 100 possessions".  This allows for a somewhat-more-valid comparison to be made between teams of differing generations.  This also partially controls for stats being functionally-dependent upon common in-game conditions and provides a more distilled view of a team's capabilities.
 
 - The 1979-80 NBA Season was chosen as the starting point for the dataset because it represesnts the most recent, fundamental change to the game: the 3-pt Shot.  While, it took over 20 years for the 3-pt shot to actually change the game, it is important to note that the efficacy of the model is assumed to be correlated with the number of datapoints (approx. 1200), and thus, 1979 was chosen over 2003, as this would have only yielded about 600 datapoints.
 
 #### Project Planning:
 - Plan: Questions and Hypotheses
-- Acquire: Curated dataset from from https://www.basketball-reference.com by subsetting team-level statistics which include stats reflecting "skill, talent, and hustle".  For example, team Field Goal % is a function of skill level(among other contributors), while Steals, Rebounds, or Fouls Drawn are a function of "talent and hustle" (among others).
+- Acquire: Curated dataset from https://www.basketball-reference.com by subsetting team-level statistics which include stats reflecting "skill, talent, coaching, and hustle".  For example, team Field Goal % is a function of skill level(among other contributors), while Steals, Rebounds, or Fouls Drawn are a function of "talent and hustle" (among others).
 - Prepare: Kept outliers after investigating their nature, missingness was a non-issue, as there were ZERO entries containing NULL values for predictors.  StandardScaler used for scaling purposes.  Split into ML subsets (Train/Validate/Test).
 - Explore: Univariate and multi-variate analysis, correlation matrix, 2D visualization, correlation significance testing, 2-sample T-testing for significant differences in means.
 - Model: Established a baseline "Precision" for Positive class of 57.1% using the most frequent target occurance of "yes: playoffs".  Then with a DecisionTreeClassifier with MaxDepth set to 4, established a new Precision floor of 86.0%. After creating models with different tree-based and non-tree-based algorithms and multiple tunings, findings indicated a Multi-Layer Perceptron with a three hidden layers (256,128,64 nodes) yielded best validation results (90.0% Precision on Test).
@@ -25,7 +25,7 @@
 * Can statistics which reflect a team's level of skill, preparation and effort (hustle) yield similar or even better results than the traditional statistics upon which most players/teams are evaluated?  
 * Can these chosen features transcend the changing nature of the game in order to allow for an "apples-to-apples" categorization of teams from multiple eras of NBA play? 
 * If all of the above are realistic and possible, can an informed sports-wager be placed utilizing the outputs of said modeling?
-* If wagers are at-risk, which is more benign, a false positive: a team predicted to make the playoffs but fails to do so, or a false-negative: a team that is predicted to NOT make the playoffs but ulyimately does?
+* Which is the more disasterous outcome, a false positive: a team predicted to make the playoffs but fails to do so, or a false-negative: a team that is predicted to NOT make the playoffs but ultimately does?
 * Can the sports-wagering public make use of the model output when placing "futures" wagers on teams that may or may not win NBA Championship, Conf Championship, or Div Championship?
 
 #### Data Dictionary: 
@@ -53,15 +53,15 @@
 #### Findings, Recommendations, and Takeaways:
 
 - Modeling was optimized for PRECISION for the Positive Class ("Playoffs").  The nature of sports wagering allows False Negatives to be inconsequential, however, False Positives are punished significantly via loss of wagering capital.
-- Tree-Based models performed admirably well, as did Multi-Layed Perceptron and LogisticRegression classifiers.  A realistic expectation for Precision on the Validation subset ranges between 80% and 88%.  Multiple Logistic Regression models also provided coefficient information for determining feature importance.
+- Tree-Based models performed admirably well, as did Multi-Layered Perceptron and LogisticRegression classifiers.  A realistic expectation for Precision on the Validation subset ranges between 80% and 88%.  Multiple Logistic Regression models also provided coefficient information for determining feature importance.
 - This implies that not only is it possible to achieve significant "predictive capability", but we may also retain a realistic level of "interpretability" or explainability with our results if we were to use Tree-Based classifiers.
 - Along with DecisionTree and Random Forest models, LogRegression pointed towards the features "pts" and "opp_pts" as the Top 2 features.  While this should seem intuitive and obvious, the interesting aspect of feature importance is that all three models pointed to differing features in order to round out their respective Top 5 lists.
 - In the future, it is recommended to explore applications of ML clustering on this dataset to support an increase in the predictive power of classification models.
 
 #### Applications:
 
-- For the purposes of placing "Futures" wagers for NBA Champ, Conf Champ, etc...the first step is to ensure that Team X will qualify for the playoffs.  If a wager is placed, and Team X fails to reach the playoffs, then the ticket is now an expensive piece of kindling.  This project deals ONLY WITH THIS ASPECT of the process, will Team X qualify for the playoffs?
-- Further evaluation is necessary to compare the probability that Team X wins the NBA Championship to the payoff odds offered by the sportsbook.  Much information is publicly available to make this evaluation such that a wager can be made with a Positive Expected Value.  It is outside the scope of this project to elaborate further on the topic of sports wagering theory and practice.  As a starting point, visit the "Wizard of Odds", Michael Shackleford's website at https://wizardofodds.com/games/sports-betting.
+- For the purposes of placing "Futures" wagers for NBA Champ, Conf Champ, etc...the first step is to ensure that Team X will qualify for the playoffs.  If a wager is placed, and Team X fails to reach the playoffs, then the ticket is now an expensive piece of kindling.  This project deals ONLY WITH THIS ASPECT of the process: will Team X qualify for the playoffs?
+- Further evaluation is necessary to compare the probability that Team X wins the NBA Championship to the payoff odds offered by the sportsbook.  Much information is publicly available to make this evaluation such that a wager can be made with a Positive Expected Value.  It is outside the scope of this project to elaborate further on the topic of sports wagering theory and practice.  As a starting point, please visit the "Wizard of Odds", Michael Shackleford's website at https://wizardofodds.com/games/sports-betting.
 
 
 #### Instructions for those who wish to reproduce this work or simply follow along:
