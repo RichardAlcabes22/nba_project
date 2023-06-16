@@ -1,4 +1,4 @@
-# nba_classification_project
+## nba_classification_project
 #### Welcome to this initial exploration of NBA Team Data from the 1979-80 season until the current 2022-23 season!  The primary purpose of this project is to make accurate mid-season predictions about which teams will make the playoffs at the end of the season. The project data-set was personally curated coutesy of https://www.basketball-reference.com.  Season-wide Team data for each NBA Team from 1979 until present was aggregated and each row was labeled as a "Playoff" team or a "Non-Playoff" team.
 #### The goals of this initial exploration are as follows:
 - PRIMARY: Generate actionable predictions regarding whether or not a team will qualify for the Playoffs at season's-end.
