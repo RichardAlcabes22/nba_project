@@ -76,4 +76,4 @@ Ensure:
 - All files are in the SAME FOLDER
 - wranglerer.py and modeling.py each have the .py extension in the file name
 
-Any further assistance required, please email me at myemail@somecompany.com.
+Any further assistance required, please email me at myemailaddress@somecompany.com.
